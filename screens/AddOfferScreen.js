@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { theme } from '../styles/theme';
 
-export default function AddPostScreen() {
+export default function AddOfferScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.text}>Add Post Screen</Text>
+        <Text style={styles.text}>Add Offer Screen</Text>
       </View>
     </SafeAreaView>
   );

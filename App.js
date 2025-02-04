@@ -8,7 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import MessagesScreen from './screens/MessagesScreen';
 import SearchScreen from './screens/SearchScreen';
-import AddPostScreen from './screens/AddPostScreen';
+import AddOfferScreen from './screens/AddOfferScreen';
 // Import other screens similarly
 import { theme } from './styles/theme';
 
@@ -29,7 +29,7 @@ export default function App() {
       toValue: 1,
       useNativeDriver: true,
     }).start();
-    navigation.navigate('AddPost');
+    navigation.navigate('AddOffer');
   };
 
   return (
@@ -65,8 +65,8 @@ export default function App() {
             }}
           />
           <Tab.Screen 
-            name="AddPost" 
-            component={AddPostScreen}
+            name="AddOffer" 
+            component={AddOfferScreen}
             options={({ navigation }) => ({
               tabBarLabel: '',
               tabBarIcon: ({ color, size }) => (
