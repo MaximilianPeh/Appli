@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import MessagesScreen from './screens/MessagesScreen';
-import CommunityScreen from './screens/CommunityScreen';
+import SearchScreen from './screens/SearchScreen';
 import AddPostScreen from './screens/AddPostScreen';
 // Import other screens similarly
 import { theme } from './styles/theme';
@@ -56,11 +56,11 @@ export default function App() {
             }}
           />
           <Tab.Screen 
-            name="Community" 
-            component={CommunityScreen}
+            name="Search" 
+            component={SearchScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Ionicons name="people" size={size} color={color} />
+                <Ionicons name="search" size={size} color={color} />
               ),
             }}
           />

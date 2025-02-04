@@ -4,7 +4,6 @@ import { theme } from '../styles/theme';
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <View style={styles.grid}>
@@ -127,7 +126,6 @@ export default function HomeScreen() {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
   );
 }
 

@@ -1,13 +1,18 @@
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+// Create new SearchScreen.js with basic search functionality
+import { View, StyleSheet, TextInput } from 'react-native';
 import { theme } from '../styles/theme';
 
-export default function CommunityScreen() {
+export default function SearchScreen() {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Community Screen</Text>
+    <View style={styles.container}>
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search..."
+          placeholderTextColor={theme.colors.text.secondary}
+        />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
