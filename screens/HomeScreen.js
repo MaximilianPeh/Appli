@@ -1,5 +1,6 @@
 import { View, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import Offer from '../components/Offer';
+import SearchButton from '../components/SearchButton';
 import { theme } from '../styles/theme';
 
 export default function HomeScreen() {
@@ -125,6 +126,9 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
+      <View style={styles.searchButtonContainer}>
+        <SearchButton />
+      </View>
     </SafeAreaView>
   );
 }
@@ -132,6 +136,17 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: theme.colors.background.primary
+  },
+  searchButtonContainer: {
+    position: 'absolute',
+    top: theme.spacing.md,
+    left: theme.spacing.md,
+    right: theme.spacing.md,
+    zIndex: 1,
+  },
+  header: {
+    padding: theme.spacing.md,
     backgroundColor: theme.colors.background.primary,
   },
   container: {
