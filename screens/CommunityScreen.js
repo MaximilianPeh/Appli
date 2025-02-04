@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.colors.background.primary,
+    borderWidth: 2,
+    borderColor: 'red'
   },
   text: {
     color: theme.colors.text.primary,
