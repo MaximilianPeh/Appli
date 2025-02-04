@@ -60,7 +60,7 @@ export default function App() {
             component={SearchScreen}
             options={{
               tabBarIcon: ({ color, size }) => (
-                <Ionicons name="search" size={size} color={color} />
+                <Ionicons name="people" size={size} color={color} />
               ),
             }}
           />

@@ -1,7 +1,7 @@
 export const theme = {
   // Colors
   colors: {
-    primary: '#3AA8C1',     // Your existing accent color
+    primary: '#05ace6',     // Your existing accent color
     background: {
       primary: '#000000',   // Main background
       secondary: '#121212', // Slightly lighter black for cards/elements
@@ -10,15 +10,15 @@ export const theme = {
     text: {
       primary: '#FFFFFF',   // Main text color
       secondary: '#CCCCCC', // Secondary text
-      accent: '#3AA8C1',    // Matching your tab bar active color
+      accent: '#05ace6',    // Matching your tab bar active color
     },
     tabBar: {
-      active: '#3AA8C1',
+      active: '#05ace6',
       inactive: '#FFFFFF',
       background: '#000000',
     }
   },
-
+  
   // Spacing (based on your existing layouts)
   spacing: {
     xs: 4,
