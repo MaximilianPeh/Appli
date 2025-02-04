@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#f5f5f5',
     borderWidth: 4,
-    borderColor: 'red',
+    borderColor: 'blue',
   },
   grid: {
     flexDirection: 'row',
