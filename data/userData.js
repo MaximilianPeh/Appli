@@ -3,6 +3,7 @@ export const userData = {
     username: "John Doe",
     avatar: "https://example.com/avatar.jpg",
     rating: 4.1,
+    points: 500,
     followers: 0,
     following: 0,
     listings: [],
