@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useMemo } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
+import { theme } from '../styles/theme';
 
 const Offer = ({ itemName, rating, sellerName }) => {
   // Generate a random height between 140 and 320 pixels for more variation
@@ -10,6 +12,10 @@ const Offer = ({ itemName, rating, sellerName }) => {
 
   return (
     <View style={[styles.container, { height: randomHeight }]}>
+      <LinearGradient
+        colors={['transparent', 'rgba(0, 0, 0, 0.2)']}
+        style={[styles.innerShadow, { height: randomHeight * 0.25 }]} // 25% of container height
+      />
       <View style={styles.infoContainer}>
         <Text style={styles.itemName}>{itemName}</Text>
         <View style={styles.ratingContainer}>
@@ -25,18 +31,11 @@ const Offer = ({ itemName, rating, sellerName }) => {
 const styles = StyleSheet.create({
   container: {
     width: 160,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.primary, // the default blue
     borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
     margin: 8,
     justifyContent: 'flex-end', // Align content to bottom
+    borderWidth: 1
   },
   infoContainer: {
     padding: 8,
@@ -46,6 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     marginBottom: 4,
+    color: theme.colors.text.primary
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -55,11 +55,19 @@ const styles = StyleSheet.create({
   rating: {
     marginLeft: 4,
     fontSize: 10,
-    color: '#666',
+    color: theme.colors.text.primary
   },
   sellerName: {
     fontSize: 9,
-    color: '#666',
+    color: theme.colors.text.primary
+  },
+  innerShadow: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
   },
 });
 
