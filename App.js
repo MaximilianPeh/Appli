@@ -10,6 +10,7 @@ import MessagesScreen from './screens/MessagesScreen';
 import CommunityScreen from './screens/CommunityScreen';
 import AddPostScreen from './screens/AddPostScreen';
 // Import other screens similarly
+import { theme } from './styles/theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,85 +33,85 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,           // This removes the header/title (that looks ugly asf) at the top
-          tabBarActiveTintColor: '#3AA8C1', // Color of the active tab (text and icon)
-          tabBarInactiveTintColor: 'white',  // Color of inactive tabs
-          tabBarStyle: {
-            backgroundColor: '#000000',      // Background color of the tab bar
-            // You can add more styling here like:
-            // borderTopColor: '#000000',
-            // height: 60,
-          }
-        }}
-      >
-        <Tab.Screen 
-          name="Home" 
-          component={HomeScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="home" size={size} color={color} />
-            ),
+    <View style={styles.container}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+            tabBarActiveTintColor: theme.colors.tabBar.active,
+            tabBarInactiveTintColor: theme.colors.tabBar.inactive,
+            tabBarStyle: {
+              backgroundColor: theme.colors.tabBar.background,
+              borderTopWidth: 0,
+            }
           }}
-        />
-        <Tab.Screen 
-          name="Community" 
-          component={CommunityScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="people" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen 
-          name="AddPost" 
-          component={AddPostScreen}
-          options={({ navigation }) => ({
-            tabBarLabel: '',
-            tabBarIcon: ({ color, size }) => (
-              <View style={styles.addButtonContainer}>
-                <Pressable 
-                  onPressIn={onPressIn} 
-                  onPressOut={() => onPressOut(navigation)}
-                >
-                  <Animated.View style={[styles.addButton, { transform: [{ scale: scaleAnim }] }]}>
-                    <Ionicons name="add" size={32} color="white" />
-                  </Animated.View>
-                </Pressable>
-              </View>
-            ),
-          })}
-        />
-        <Tab.Screen 
-          name="Messages" 
-          component={MessagesScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="chatbubbles" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen 
-          name="Profile" 
-          component={ProfileScreen}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="person" size={size} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+        >
+          <Tab.Screen 
+            name="Home" 
+            component={HomeScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="home" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="Community" 
+            component={CommunityScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="people" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="AddPost" 
+            component={AddPostScreen}
+            options={({ navigation }) => ({
+              tabBarLabel: '',
+              tabBarIcon: ({ color, size }) => (
+                <View style={styles.addButtonContainer}>
+                  <Pressable 
+                    onPressIn={onPressIn} 
+                    onPressOut={() => onPressOut(navigation)}
+                  >
+                    <Animated.View style={[styles.addButton, { transform: [{ scale: scaleAnim }] }]}>
+                      <Ionicons name="add" size={32} color="white" />
+                    </Animated.View>
+                  </Pressable>
+                </View>
+              ),
+            })}
+          />
+          <Tab.Screen 
+            name="Messages" 
+            component={MessagesScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="chatbubbles" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="Profile" 
+            component={ProfileScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="person" size={size} color={color} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+      <StatusBar style="light" backgroundColor={theme.colors.background.primary} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.background.primary,
   },
   content: {
     flex: 1,
@@ -122,19 +123,12 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   addButton: {
-    backgroundColor: '#3AA8C1',
+    backgroundColor: theme.colors.primary,
     width: 56,
     height: 56,
     borderRadius: 28,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 6, // for Android shadow
-    shadowColor: '#000', // for iOS shadow
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84
+    ...theme.card.shadow,
   }
 });

@@ -1,5 +1,6 @@
 import { View, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import Offer from '../components/Offer';
+import { theme } from '../styles/theme';
 
 export default function HomeScreen() {
   return (
@@ -131,14 +132,12 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.colors.background.primary,
   },
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#f5f5f5',
-    borderWidth: 4,
-    borderColor: 'blue',
+    padding: theme.spacing.md,
+    backgroundColor: theme.colors.background.primary,
   },
   grid: {
     flexDirection: 'row',
@@ -150,11 +149,11 @@ const styles = StyleSheet.create({
   },
   expandedContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: theme.colors.background.overlay,
   },
   expandedContent: {
     flex: 1,
     width: '100%',
-    padding: 16,
+    padding: theme.spacing.md,
   }
 });
