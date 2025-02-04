@@ -12,20 +12,18 @@ export default function ProfileScreen() {
             <Text style={styles.username}>{userData.username}</Text>
             <View style={styles.statsContainer}>
               <View style={styles.statItem}>
-                <Text style={styles.statNumber}>{userData.points}</Text>
-                <Text style={styles.statLabel}>points</Text>
-              </View>
-              <View style={styles.statItem}>
-                <Text style={styles.statNumber}>{userData.followers}</Text>
                 <Text style={styles.statLabel}>followers</Text>
+                <Text style={styles.statNumber}>{userData.followers}</Text>
               </View>
               <View style={styles.statItem}>
-                <Text style={styles.statNumber}>{userData.following}</Text>
                 <Text style={styles.statLabel}>following</Text>
+                <Text style={styles.statNumber}>{userData.following}</Text>
               </View>
             </View>
           </View>
         </View>
+
+        <View style={[styles.walletContainer, { marginTop: theme.spacing.xl }]} />
       </View>
     </SafeAreaView>
   );
@@ -49,10 +47,10 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   profilePicture: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: '#3B82F6', // Blue circle
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: 'white',
   },
   userInfoContainer: {
     flex: 1,
@@ -60,8 +58,8 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: theme.colors.text.primary,
-    marginBottom: 8,
+    color: theme.colors.primary,
+    marginBottom: 26
   },
   statsContainer: {
     flexDirection: 'row',
@@ -77,7 +75,17 @@ const styles = StyleSheet.create({
     color: theme.colors.text.primary,
   },
   statLabel: {
-    fontSize: 14,
+    fontSize: 12,
     color: theme.colors.text.primary,
+    marginBottom: 4,
   },
+  walletContainer: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 100,
+    borderRadius: 12,
+    marginTop: theme.spacing.md,
+    marginHorizontal: theme.spacing.md,
+    alignSelf: 'center'
+  }
 });
