@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     width: 160,
     backgroundColor: theme.colors.primary, // the default blue
-    borderRadius: 12,
+    borderRadius: theme.borderRadius,
     margin: 8,
     justifyContent: 'flex-end', // Align content to bottom
     borderWidth: 1

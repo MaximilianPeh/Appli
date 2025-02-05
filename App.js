@@ -129,6 +129,5 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     justifyContent: 'center',
     alignItems: 'center',
-    ...theme.card.shadow,
   }
 });
