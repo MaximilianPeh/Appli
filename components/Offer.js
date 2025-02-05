@@ -30,12 +30,12 @@ const Offer = ({ itemName, rating, sellerName }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 160,
+    width: '100%',
     backgroundColor: theme.colors.primary, // the default blue
     borderRadius: theme.borderRadius,
-    margin: 8,
     justifyContent: 'flex-end', // Align content to bottom
-    borderWidth: 1
+    // borderWidth: 1,
+    // borderColor: 'red'
   },
   infoContainer: {
     padding: 8,
