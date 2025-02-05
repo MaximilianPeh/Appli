@@ -19,8 +19,9 @@ export default function App() {
 
   const onPressIn = () => {
     Animated.spring(scaleAnim, {
-      toValue: 0.8,
+      toValue: 0.85,
       useNativeDriver: true,
+      speed: 20
     }).start();
   };
 
@@ -28,6 +29,7 @@ export default function App() {
     Animated.spring(scaleAnim, {
       toValue: 1,
       useNativeDriver: true,
+      speed: 30
     }).start();
     navigation.navigate('AddOffer');
   };
