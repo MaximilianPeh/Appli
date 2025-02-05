@@ -8,7 +8,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       {/* Top shadow */}
       <LinearGradient
-        colors={['rgba(0, 0, 0, 0.6)', 'transparent']}
+        colors={['rgba(0, 0, 0, 0.8)', 'transparent']}
         style={styles.topShadow}
         pointerEvents="none"
       />
@@ -133,7 +133,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
-
+            
       {/* Bottom shadow */}
       <LinearGradient
         colors={['transparent', 'rgba(0, 0, 0, 1)']}
