@@ -133,8 +133,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background.primary,
-    borderWidth: 2,
-    borderColor: 'red'
+    width: '100%',
+    // borderWidth: 2,
+    // borderColor: 'red'
   },
   safeArea: {
     flex: 1,
@@ -149,7 +150,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    padding: theme.spacing.md,
+    // borderWidth: 2,
+    // borderColor: 'blue'
   },
   header: {
     padding: theme.spacing.md,
@@ -158,10 +160,15 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
   },
   column: {
     flex: 1,
-    alignItems: 'center',
+    gap: theme.spacing.md, // controls the spacing between components in column
+    padding: theme.spacing.md/2, // controls the padding of the column (horizontal padding between column and items)
+    alignItems: 'stretch',
+    // borderWidth: 2,
+    // borderColor: 'green'
   },
   expandedContainer: {
     flex: 1,
