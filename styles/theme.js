@@ -28,18 +28,6 @@ export const theme = {
     xl: 32
   },
 
-  // Existing card styles from your Offer component
-  card: {
-    shadow: {
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5,
-    },
-    borderRadius: 12,
-  },
+  // Border radius (roundness of courners)
+  borderRadius: 12,
 };
