@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Animated, Pressable } from 'react-native';
 import { theme } from '../styles/theme';
 import { useState } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function AddOfferScreen() {
   const [title, setTitle] = useState('');
@@ -39,6 +40,11 @@ export default function AddOfferScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.addingContainer}>
+          <LinearGradient
+            colors={['rgba(0,0,0,0.1)', 'transparent']}
+            style={styles.topShadow}
+          />
+          
           <View style={styles.headerContainer}>
             <Pressable 
               onPressIn={onPressIn}
@@ -49,12 +55,13 @@ export default function AddOfferScreen() {
               </Animated.View>
             </Pressable>
           </View>
+
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Title</Text>
             <TextInput 
               style={styles.input}
               placeholder="Tell everyone what are item is"
-              placeholderTextColor="#999"
+              placeholderTextColor={theme.colors.text.secondary}
               value={title}
               onChangeText={setTitle}
             />
@@ -63,7 +70,7 @@ export default function AddOfferScreen() {
             <TextInput
               style={[styles.input, styles.multilineInput]}
               placeholder="Add a description"
-              placeholderTextColor="#999"
+              placeholderTextColor={theme.colors.text.secondary}
               multiline={true}
               numberOfLines={3}
               value={description}
@@ -74,7 +81,7 @@ export default function AddOfferScreen() {
             <TextInput
               style={styles.input}
               placeholder="Add how many points its renting for"
-              placeholderTextColor="#999"
+              placeholderTextColor={theme.colors.text.secondary}
               keyboardType="numeric"
               value={points}
               onChangeText={setPoints}
@@ -84,7 +91,7 @@ export default function AddOfferScreen() {
             <TextInput
               style={styles.input}
               placeholder="Add links here"
-              placeholderTextColor="#999"
+              placeholderTextColor={theme.colors.text.secondary}
               value={link}
               onChangeText={setLink}
             />
@@ -93,11 +100,16 @@ export default function AddOfferScreen() {
             <TextInput
               style={styles.input}
               placeholder="Add topics"
-              placeholderTextColor="#999"
+              placeholderTextColor={theme.colors.text.secondary}
               value={topics}
               onChangeText={setTopics}
             />
           </View>
+
+          <LinearGradient
+            colors={['transparent', 'rgba(0,0,0,0.1)']}
+            style={styles.bottomShadow}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -121,6 +133,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'flex-end',
+    position: 'relative',
   },
   headerContainer: {
     position: 'absolute',
@@ -159,5 +172,21 @@ const styles = StyleSheet.create({
   multilineInput: {
     height: 80,
     textAlignVertical: 'top',
-  }
+  },
+  topShadow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 40,
+    zIndex: 1,
+  },
+  bottomShadow: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 40,
+    zIndex: 1,
+  },
 });

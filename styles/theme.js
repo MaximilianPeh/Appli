@@ -9,7 +9,7 @@ export const theme = {
     },
     text: {
       primary: '#FFFFFF',   // Main text color
-      secondary: '#CCCCCC', // Secondary text
+      secondary: '#999999', // Secondary text
       accent: '#05ace6',    // Matching your tab bar active color
     },
     tabBar: {
