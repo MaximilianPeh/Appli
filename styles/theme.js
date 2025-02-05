@@ -30,4 +30,14 @@ export const theme = {
 
   // Border radius (roundness of courners)
   borderRadius: 12,
+
+  typography: {
+    size: {
+      xs: 10,
+      sm: 12,
+      md: 24,
+      lg: 48,
+      xl: 96,
+    }
+  }
 };
