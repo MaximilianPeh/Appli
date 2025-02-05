@@ -37,19 +37,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background.primary,
-    padding: 20,
-    borderWidth: 2,
-    borderColor: 'red',
+    padding: theme.spacing.md,
+    gap: theme.spacing.md, 
+    // borderWidth: 2,
+    // borderColor: 'red',
   },
   profileHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 20,
+    gap: theme.spacing.lg,
   },
   profilePicture: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: '25%', // 25% of the parent container
+    aspectRatio: 1, // height equals width
+    borderRadius: 9999, // ensures its always a circle
     backgroundColor: 'white',
   },
   userInfoContainer: {
@@ -83,9 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
     height: 100,
-    borderRadius: 12,
-    marginTop: theme.spacing.md,
-    marginHorizontal: theme.spacing.md,
+    borderRadius: theme.borderRadius,
     alignSelf: 'center'
   }
 });
