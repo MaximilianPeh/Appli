@@ -31,6 +31,7 @@ export const theme = {
   // Border radius (roundness of courners)
   borderRadius: 12,
 
+  // Typography (consistent font sizes)
   typography: {
     size: {
       xs: 10,
@@ -38,7 +39,6 @@ export const theme = {
       md: 24,
       lg: 48,
       xl: 96,
-      
     }
   }
 };
