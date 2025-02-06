@@ -48,14 +48,6 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius,
     fontSize: theme.typography.size.sm,
   },
-  topShadow: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 100,
-    zIndex: 0,
-  },
   searchText: {
     color: theme.colors.text.primary,
     marginTop: theme.spacing.sm,
