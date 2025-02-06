@@ -1,17 +1,26 @@
-import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
+import { Searchbar } from 'react-native-paper';
 import { theme } from '../styles/theme';
-import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
 
 export default function SearchScreen() {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.searchContainer}>
-          <TextInput
+          <Searchbar
+            placeholder="Search offers..."
+            onChangeText={setSearchQuery}
+            value={searchQuery}
             style={styles.searchInput}
-            placeholder="Search items..."
+            inputStyle={{ color: theme.colors.text.primary }}
             placeholderTextColor={theme.colors.text.secondary}
           />
+          <Text style={styles.searchText}>
+            You typed: {searchQuery}
+          </Text>
         </View>
       </View>
     </SafeAreaView>
@@ -46,5 +55,11 @@ const styles = StyleSheet.create({
     right: 0,
     height: 100,
     zIndex: 0,
-  }
+  },
+  searchText: {
+    color: theme.colors.text.primary,
+    marginTop: theme.spacing.sm,
+    fontSize: theme.typography.size.md,
+    textAlign: 'center',
+  },
 });
