@@ -4,13 +4,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Animated, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 // Import your screens
-import HomeScreen from './screens/HomeScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import MessagesScreen from './screens/MessagesScreen';
-import SearchScreen from './screens/SearchScreen';
-import AddOfferScreen from './screens/AddOfferScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import MessagesScreen from './src/screens/MessagesScreen';
+import SearchScreen from './src/screens/SearchScreen';
+import AddOfferScreen from './src/screens/AddOfferScreen';
 // Import other screens similarly
-import { theme } from './styles/theme';
+import { theme } from './src/styles/theme';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,7 +1,7 @@
 import { View, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Offer from '../../components/Offer';
-import { theme } from '../../styles/theme';
+import Offer from '../components/Offer';
+import { theme } from '../styles/theme';
 
 export default function HomeScreen() {
   return (

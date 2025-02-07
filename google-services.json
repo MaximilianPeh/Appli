@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1071675452158",
+    "project_id": "applibackend",
+    "storage_bucket": "applibackend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071675452158:android:2365a9c8f06d5da98013af",
+        "android_client_info": {
+          "package_name": "com.theapplicators.appli"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRo6wzfaDmcjW2jYDaOAW8bV6uEMAF12Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
