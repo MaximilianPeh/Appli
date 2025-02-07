@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Animated, Pressable } from 'react-native';
-import { theme } from '../styles/theme';
+import { theme } from '../../styles/theme';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
