@@ -3,7 +3,7 @@ import pandas as pd
 
 from groq import Groq
 
-client = Groq(api_key="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",)
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"),)
 completion = client.chat.completions.create(
     model="llama-3.3-70b-versatile",
     messages=[
