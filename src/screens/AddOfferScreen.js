@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Animated, Pressable } from 'react-native';
 import { theme } from '../styles/theme';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function AddOfferScreen() {
@@ -9,8 +9,30 @@ export default function AddOfferScreen() {
   const [points, setPoints] = useState('');
   const [link, setLink] = useState('');
   const [topics, setTopics] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const scaleAnim = new Animated.Value(1);
+  const successOpacity = new Animated.Value(0);
+  const successScale = new Animated.Value(0);
+
+  const animateSuccess = () => {
+    successOpacity.setValue(1);
+    successScale.setValue(0);
+    
+    Animated.sequence([
+      Animated.spring(successScale, {
+        toValue: 1,
+        useNativeDriver: true,
+        speed: 20,
+      }),
+      Animated.timing(successOpacity, {
+        toValue: 0,
+        duration: 800,
+        useNativeDriver: true,
+        delay: 1000,
+      }),
+    ]).start();
+  };
 
   const onPressIn = () => {
     Animated.spring(scaleAnim, {
@@ -20,20 +42,53 @@ export default function AddOfferScreen() {
     }).start();
   };
 
+  
+
   // Clears all inputs, in the future will also send information to database
-  const onPressOut = () => {
+  const onPressOut = async () => {
     Animated.spring(scaleAnim, {
       toValue: 1,
       useNativeDriver: true,
       speed: 30
     }).start();
     
-    // Clear all inputs
-    setTitle('');
-    setDescription('');
-    setPoints('');
-    setLink('');
-    setTopics('');
+    try {
+      const offerData = {
+        title: title,
+        description: description,
+        points: Number(points),
+        link: link,
+        topics: topics,
+        createdAt: new Date(),
+      };
+
+      
+      // add offers
+      const response = await fetch('https://fbdb-128-59-176-236.ngrok-free.app/put_offer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(offerData),
+      });
+
+      if (!response.ok) {
+        throw new Error('API call failed');
+      }
+
+      // Show success animation
+      setShowSuccess(true);
+      animateSuccess();
+
+      // Clear all inputs after successful addition
+      setTitle('');
+      setDescription('');
+      setPoints('');
+      setLink('');
+      setTopics('');
+    } catch (error) {
+      console.error("Error adding offer: ", error);
+    }
   };
 
   return (
@@ -106,6 +161,18 @@ export default function AddOfferScreen() {
             />
           </View>
 
+          {showSuccess && (
+            <Animated.View style={[
+              styles.successIcon,
+              {
+                opacity: successOpacity,
+                transform: [{ scale: successScale }],
+              }
+            ]}>
+              <Text style={styles.checkmark}>✓</Text>
+            </Animated.View>
+          )}
+          
           <LinearGradient
             colors={['transparent', 'rgba(0,0,0,0.1)']}
             style={styles.bottomShadow}
@@ -131,7 +198,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: theme.borderRadius,
     width: '100%',
-    height: '100%',
+    height: '95%',
     justifyContent: 'flex-end',
     position: 'relative',
   },
@@ -188,5 +255,23 @@ const styles = StyleSheet.create({
     right: 0,
     height: 40,
     zIndex: 1,
+  },
+  successIcon: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -25 }, { translateY: -25 }],
+    backgroundColor: '#4CAF50',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 2,
+  },
+  checkmark: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 });

@@ -2,8 +2,35 @@ import { View, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-nat
 import { LinearGradient } from 'expo-linear-gradient';
 import Offer from '../components/Offer';
 import { theme } from '../styles/theme';
+import { useState, useEffect } from 'react';
 
 export default function HomeScreen() {
+  const [offers, setOffers] = useState([]);
+
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch('https://fbdb-128-59-176-236.ngrok-free.app/get_all_offers', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch offers');
+        }
+
+        const data = await response.json();
+        setOffers(data);
+      } catch (error) {
+        console.error('Error fetching offers:', error);
+      }
+    };
+
+    fetchOffers();
+  }, []); // Empty dependency array means this runs once when component mounts
+
   return (
     <View style={styles.container}>
       {/* Top shadow */}

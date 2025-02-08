@@ -3,11 +3,6 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-cred = credentials.Certificate('src/appli-94e33-firebase-adminsdk-fbsvc-81156869e2.json')
-app = firebase_admin.initialize_app(cred)
-
-
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAp4AdP6dufjw0Zj8sWeeC517K-weD0huk",
@@ -20,3 +15,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export default app;
