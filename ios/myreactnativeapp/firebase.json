@@ -1,0 +1,14 @@
+{
+  "react-native": {
+    "ios": {
+      "admob_app_id": "",
+      "app_id": "1:1071675452158:ios:d2685ab3cc2402a08013af",
+      "client_id": "",
+      "api_key": "AIzaSyA3Pk4mjEXm3w5nKe0UpJpt1BkI-yeKx8w",
+      "database_url": "https://applibackend-default-rtdb.firebaseio.com",
+      "storage_bucket": "applibackend.firebasestorage.app",
+      "project_id": "applibackend",
+      "messaging_sender_id": "1071675452158"
+    }
+  }
+}
