@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 
-
 app = Flask(__name__)
+
 
 # @app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
 # def recommendations():
