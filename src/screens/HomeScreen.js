@@ -22,6 +22,7 @@ export default function HomeScreen() {
       }
 
       const data = await response.json();
+      console.log(data);
       setOffers(data);
     } catch (error) {
       console.error('Error fetching offers:', error);
