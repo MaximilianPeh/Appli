@@ -28,7 +28,7 @@ const Offer = ({ itemName, rating, sellerName, points, imageURL }) => {
     }).start();
 
     try {
-      const response = await fetch('https://b8d6-128-59-176-236.ngrok-free.app/put_borrow', {
+      const response = await fetch('https://128d-128-59-176-236.ngrok-free.app/put_borrow', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     marginBottom: 4,
-    color: theme.colors.text.primary
+    color: theme.colors.text.primary,
+    textShadowColor: 'black',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1,
+      height: 1
+    }
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -120,11 +126,23 @@ const styles = StyleSheet.create({
   rating: {
     marginLeft: 4,
     fontSize: 10,
-    color: theme.colors.text.primary
+    color: theme.colors.text.primary,
+    textShadowColor: 'black',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1,
+      height: 1
+    }
   },
   sellerName: {
     fontSize: 9,
-    color: theme.colors.text.primary
+    color: theme.colors.text.primary,
+    textShadowColor: 'black',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1,
+      height: 1
+    }
   },
   innerShadow: {
     position: 'absolute',
@@ -137,7 +155,13 @@ const styles = StyleSheet.create({
   points: {
     fontSize: 10,
     color: theme.colors.text.primary,
-    marginTop: 2
+    marginTop: 2,
+    textShadowColor: 'black',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1,
+      height: 1
+    }
   },
   image: {
     position: 'absolute',
@@ -152,13 +176,17 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius,
     marginTop: theme.spacing.sm,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
   },
   borrowButtonText: {
     color: theme.colors.text.primary,
     fontWeight: 'bold',
     fontSize: theme.typography.size.sm,
+    textShadowColor: 'black',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1,
+      height: 1
+    }
   },
 });
 

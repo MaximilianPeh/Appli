@@ -10,7 +10,7 @@ export default function HomeScreen() {
 
   const fetchOffers = async () => {
     try {
-      const response = await fetch('https://b8d6-128-59-176-236.ngrok-free.app/get_all_offers', {
+      const response = await fetch('https://128d-128-59-176-236.ngrok-free.app//get_all_offers', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -22,6 +22,7 @@ export default function HomeScreen() {
       }
 
       const data = await response.json();
+      console.log(data);
       setOffers(data);
     } catch (error) {
       console.error('Error fetching offers:', error);
