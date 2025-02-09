@@ -11,11 +11,11 @@ def get_recommendations(user_history):
         messages=[
             {
                 "role": "system",
-                "content": "What items should a user borrow based on previous borrowing history? Don't include instructions in your output. Input will be a .csv file with a user's previous borrowing history and all items listed in our app that a user can borrow. Ouput a .csv of 10 items that you would recommend to the user based on their interests. Do not give me any other information."
+                "content": "What items should a user borrow based on previous borrowing history? Don't include instructions in your output. Input will be a json list with a user's previous borrowing history and all items listed in our app that a user can borrow. Ouput a .csv of a JSON list of 10 items that you would recommend to the user based on their interests. Do not give me any other information."
             },
             {
                 "role": "user",
-                "content": user_history
+                "content": str(user_history)
             },
         ],
         temperature=0.2,

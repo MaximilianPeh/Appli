@@ -5,6 +5,7 @@ from recommendations import get_recommendations
 from autotagging import get_autotag
 import os
 import json
+from waitress import serve
 
 app = Flask(__name__)
 
@@ -24,14 +25,15 @@ db = firestore.client()
 
 @app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
 def recommendations():
-    # Get raw data from both collections
-    user_history = [doc.to_dict() for doc in db.collection("borrowingHistory").get()]
-    all_offers = [doc.to_dict() for doc in db.collection("offers").get()]
+    # Get raw data from both collections and extract itemName field
+    user_history = [doc.to_dict()["itemName"] for doc in db.collection("borrowingHistory").get()]
+    all_offers = [doc.to_dict()["title"] for doc in db.collection("offers").get()]
     combined_data = user_history + all_offers
+    print(combined_data)
 
     recommendations = get_recommendations(combined_data)
-    print(jsonify(recommendations))
-    return jsonify(recommendations)
+    print(recommendations)
+    return (recommendations)
 
 recommendations()
 
@@ -85,4 +87,5 @@ def get_borrows():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    serve(app, host="0.0.0.0", port=5001)
+    # app.run(debug=False, port=5001)
