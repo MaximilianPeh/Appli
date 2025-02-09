@@ -33,8 +33,6 @@ def recommendations():
     print(jsonify(recommendations))
     return jsonify(recommendations)
 
-recommendations()
-
 # AUTOTAG
 @app.route('/autotag', methods=['POST'])
 def autotag():
