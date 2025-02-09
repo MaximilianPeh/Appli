@@ -30,7 +30,10 @@ def recommendations():
     combined_data = user_history + all_offers
 
     recommendations = get_recommendations(combined_data)
+    print(jsonify(recommendations))
     return jsonify(recommendations)
+
+recommendations()
 
 # AUTOTAG
 @app.route('/autotag', methods=['POST'])
