@@ -23,17 +23,50 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
+def get_item_details(item_name):
+    """Helper function to get full details of an item from either collection"""
+    # Check offers collection
+    if (item_name == "item"):
+        return ""
+    
+    offers_docs = db.collection("offers").where("title", "==", item_name).limit(1).get()
+    for doc in offers_docs:
+        item = doc.to_dict()
+        item.update( {
+            "title": item_name,
+            "description": item.get("description"),
+            "createdAt": item.get("createdAt"),
+            "points": item.get("points"),
+            "topics": item.get("topics"),
+        })
+        print("hi")
+    print(item)
+    return item
+
 @app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
 def recommendations():
     # Get raw data from both collections and extract itemName field
     user_history = [doc.to_dict()["itemName"] for doc in db.collection("borrowingHistory").get()]
     all_offers = [doc.to_dict()["title"] for doc in db.collection("offers").get()]
     combined_data = user_history + all_offers
-    print(combined_data)
+    # print(combined_data)
 
     recommendations = get_recommendations(combined_data)
-    print(recommendations)
-    return (recommendations)
+    recs = [item.strip('"') for item in recommendations.split('\n') if item.strip()]
+
+    print(type(recommendations))
+    # print(recommendations)
+        
+    result = []
+    for item in recs:
+            item_details = get_item_details(item)
+            if item_details:  # Only add if item details were found
+                result.append(item_details)
+    print(result)
+
+    return result
+
+recommendations()
 
 # AUTOTAG
 @app.route('/autotag', methods=['POST'])
@@ -85,5 +118,5 @@ def get_borrows():
 
 
 if __name__ == '__main__':
-    serve(app, host="0.0.0.0", port=5001)
-    # app.run(debug=False, port=5001)
+    # serve(app, host="0.0.0.0", port=5001)
+    app.run(debug=True, port=5001)
