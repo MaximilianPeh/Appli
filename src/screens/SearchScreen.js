@@ -1,5 +1,6 @@
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, RefreshControl } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../styles/theme';
 import React, { useState, useEffect } from 'react';
 import Offer from '../components/Offer';
@@ -43,6 +44,7 @@ export default function SearchScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+    
         <View style={styles.searchContainer}>
           <Searchbar
             placeholder="Search offers..."
@@ -97,6 +99,13 @@ export default function SearchScreen() {
             </View>
           </View>
         </ScrollView>
+
+        {/* Bottom shadow */}
+        <LinearGradient
+          colors={['transparent', 'rgba(0, 0, 0, 1)']}
+          style={styles.bottomShadow}
+          pointerEvents="none"
+        />
       </View>
     </SafeAreaView>
   );
@@ -142,5 +151,21 @@ const styles = StyleSheet.create({
     gap: theme.spacing.md,
     padding: theme.spacing.md/2,
     alignItems: 'stretch',
+  },
+  topShadow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    zIndex: 1,
+  },
+  bottomShadow: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 30,
+    zIndex: 1,
   },
 });

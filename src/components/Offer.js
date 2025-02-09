@@ -176,8 +176,6 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius,
     marginTop: theme.spacing.sm,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
   },
   borrowButtonText: {
     color: theme.colors.text.primary,
