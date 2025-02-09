@@ -8,7 +8,6 @@ import json
 
 app = Flask(__name__)
 
-
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -59,6 +58,20 @@ def put_offer():
 def get_offers():
     docs = db.collection("offers").get()
     return jsonify([doc.to_dict() for doc in docs])
+
+@app.route('/put_borrow', methods=['POST'])
+def put_borrow():
+    data = request.json
+    print(data)
+    doc_ref = db.collection("borrowingHistory").document()
+    doc_ref.set(data)
+    return jsonify({"status": f"i put your name: {data}"})
+
+@app.route('/get_all_borrows', methods=['GET'])
+def get_borrows():
+    docs = db.collection("borrowingHistory").get()
+    return jsonify([doc.to_dict() for doc in docs])
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
