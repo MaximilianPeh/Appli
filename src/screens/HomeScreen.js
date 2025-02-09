@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, RefreshControl } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Offer from '../components/Offer';
 import { theme } from '../styles/theme';
@@ -6,30 +6,38 @@ import { useState, useEffect } from 'react';
 
 export default function HomeScreen() {
   const [offers, setOffers] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchOffers = async () => {
+    try {
+      const response = await fetch('https://b8d6-128-59-176-236.ngrok-free.app/get_all_offers', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch offers');
+      }
+
+      const data = await response.json();
+      setOffers(data);
+    } catch (error) {
+      console.error('Error fetching offers:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchOffers = async () => {
-      try {
-        const response = await fetch('https://fbdb-128-59-176-236.ngrok-free.app/get_all_offers', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch offers');
-        }
-
-        const data = await response.json();
-        setOffers(data);
-      } catch (error) {
-        console.error('Error fetching offers:', error);
-      }
-    };
-
     fetchOffers();
   }, []); // Empty dependency array means this runs once when component mounts
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchOffers();
+    console.log("Refreshed!");
+    setRefreshing(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -40,91 +48,44 @@ export default function HomeScreen() {
         pointerEvents="none"
       />
       
-      <ScrollView style={styles.scrollView}>
+      <ScrollView 
+        style={styles.scrollView}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="#ffffff" // This makes the loading spinner white
+          />
+        }
+      >
         <View style={styles.grid}>
           <View style={styles.column}>
-            <Offer 
-              itemName="ExampleItem1"
-              rating="4.5"
-              sellerName="Seller1"
-            />
-            <Offer 
-              itemName="ExampleItem3"
-              rating="4.2" 
-              sellerName="Seller3"
-            />
-            <Offer 
-              itemName="ExampleItem5"
-              rating="4.7"
-              sellerName="Seller5"
-            />
-            <Offer
-              itemName="ExampleItem7"
-              rating="4.4"
-              sellerName="Seller7"
-            />
-            <Offer
-              itemName="ExampleItem9"
-              rating="4.8"
-              sellerName="Seller9"
-            />
-            <Offer
-              itemName="ExampleItem11"
-              rating="4.6"
-              sellerName="Seller11"
-            />
-            <Offer
-              itemName="ExampleItem13"
-              rating="4.3"
-              sellerName="Seller13"
-            />
-            <Offer
-              itemName="ExampleItem15"
-              rating="4.7"
-              sellerName="Seller15"
-            />
+            {offers
+              .filter((_, index) => index % 2 === 0) // Get even-indexed offers
+              .map((offer) => (
+                <Offer 
+                  key={offer.id}
+                  itemName={offer.title}
+                  description={offer.description}
+                  rating={(3.0 + Math.floor(Math.random() * 21) / 10).toFixed(1)}
+                  points={offer.points}
+                  sellerName={"user1"}
+                />
+              ))}
           </View>
           <View style={styles.column}>
-            <Offer 
-              itemName="ExampleItem2" 
-              rating="4.8"
-              sellerName="Seller2"
-            />
-            <Offer 
-              itemName="ExampleItem4"
-              rating="4.9"
-              sellerName="Seller4"
-            />
-            <Offer
-              itemName="ExampleItem6"
-              rating="4.6"
-              sellerName="Seller6"
-            />
-            <Offer
-              itemName="ExampleItem8"
-              rating="4.3"
-              sellerName="Seller8"
-            />
-            <Offer
-              itemName="ExampleItem10"
-              rating="4.5"
-              sellerName="Seller10"
-            />
-            <Offer
-              itemName="ExampleItem12"
-              rating="4.8"
-              sellerName="Seller12"
-            />
-            <Offer
-              itemName="ExampleItem14"
-              rating="4.4"
-              sellerName="Seller14"
-            />
-            <Offer
-              itemName="ExampleItem16"
-              rating="4.6"
-              sellerName="Seller16"
-            />
+            {offers
+              .filter((_, index) => index % 2 === 1) // Get odd-indexed offers
+              .map((offer) => (
+                <Offer 
+                  key={offer.id}
+                  itemName={offer.title}
+                  description={offer.description}
+                  rating={(3.0 + Math.floor(Math.random() * 21) / 10).toFixed(1)}
+                  points={offer.points}
+                  sellerName={"user1"}
+                />
+              ))}
           </View>
         </View>
       </ScrollView>

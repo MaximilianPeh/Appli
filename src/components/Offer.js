@@ -4,10 +4,10 @@ import { useMemo } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../styles/theme';
 
-const Offer = ({ itemName, rating, sellerName }) => {
-  // Generate a random height between 140 and 320 pixels for more variation
+const Offer = ({ itemName, rating, sellerName, points }) => {
+  // Generate a random height between 200 and 400 pixels for more variation
   const randomHeight = useMemo(() => {
-    return Math.floor(Math.random() * (320 - 140 + 1)) + 140;
+    return Math.floor(Math.random() * (340 - 200 + 1)) + 200;
   }, []); // Empty dependency array ensures the height stays constant during re-renders
 
   return (
@@ -18,6 +18,7 @@ const Offer = ({ itemName, rating, sellerName }) => {
       />
       <View style={styles.infoContainer}>
         <Text style={styles.itemName}>{itemName}</Text>
+        <Text style={styles.points}>{points} points</Text>
         <View style={styles.ratingContainer}>
           <Ionicons name="star" size={12} color="#FFD700" />
           <Text style={styles.rating}>{rating}</Text>
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 8,
+    gap: theme.spacing.xs,
     alignItems: 'flex-start', // Align content to left
   },
   itemName: {
@@ -68,6 +70,11 @@ const styles = StyleSheet.create({
     right: 0,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
+  },
+  points: {
+    fontSize: 10,
+    color: theme.colors.text.primary,
+    marginTop: 2
   },
 });
 
