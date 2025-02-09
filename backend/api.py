@@ -3,6 +3,8 @@ from recommendations import get_recommendations
 from autotagging import get_autotag
 from recommendations import get_recommendations
 from autotagging import get_autotag
+import os
+import json
 
 app = Flask(__name__)
 
@@ -11,7 +13,12 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate("appli-b7af4-firebase-adminsdk-fbsvc-56b516817b.json")
+# Load credentials from environment variable or file based on environment
+if 'FIREBASE_CREDENTIALS' in os.environ:
+    cred = credentials.Certificate(json.loads(os.environ['FIREBASE_CREDENTIALS']))
+else:
+    cred = credentials.Certificate("appli-b7af4-firebase-adminsdk-fbsvc-56b516817b.json")
+
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
