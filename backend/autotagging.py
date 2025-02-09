@@ -7,15 +7,11 @@ def encode_image(image_path):
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
-# Path to your image
-image_path = "backend/potsandpans.jpg"
-
-# Getting the base64 string
-base64_image = encode_image(image_path)
-
 def get_autotag(image_path):
 
     client = Groq(api_key=os.environ.get("GROQ_API_KEY"),)
+
+    base64_image = encode_image(image_path)
 
     chat_completion = client.chat.completions.create(
         messages=[
