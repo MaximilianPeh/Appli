@@ -39,7 +39,7 @@ def get_item_details(item_name):
             "points": item.get("points"),
             "topics": item.get("topics"),
         })
-        print("hi")
+        # print("hi")
     print(item)
     return item
 
@@ -54,7 +54,7 @@ def recommendations():
     recommendations = get_recommendations(combined_data)
     recs = [item.strip('"') for item in recommendations.split('\n') if item.strip()]
 
-    print(type(recommendations))
+    # print(type(recommendations))
     # print(recommendations)
         
     result = []
@@ -64,7 +64,7 @@ def recommendations():
                 result.append(item_details)
     print(result)
 
-    return result
+    return jsonify(result)
 
 recommendations()
 
