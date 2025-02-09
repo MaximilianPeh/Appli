@@ -43,7 +43,7 @@ def get_item_details(item_name):
     print(item)
     return item
 
-@app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
+@app.route('/recommendations', methods=['GET']) # post means send data to api; get means you get data from firebase
 def recommendations():
     # Get raw data from both collections and extract itemName field
     user_history = [doc.to_dict()["itemName"] for doc in db.collection("borrowingHistory").get()]
@@ -65,8 +65,6 @@ def recommendations():
     print(result)
 
     return jsonify(result)
-
-recommendations()
 
 # AUTOTAG
 @app.route('/autotag', methods=['POST'])
