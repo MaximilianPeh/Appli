@@ -28,7 +28,5 @@ def get_recommendations(user_history):
     output = completion.choices[0].message.content
     print(output)
 
-get_recommendations(user_history)
-
 # for chunk in completion:
 #     print(chunk.choices[0].delta.content or "", end="")
