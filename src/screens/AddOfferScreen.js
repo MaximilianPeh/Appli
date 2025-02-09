@@ -64,7 +64,7 @@ export default function AddOfferScreen() {
 
       
       // add offers
-      const response = await fetch('https://128d-128-59-176-236.ngrok-free.app/put_offer', {
+      const response = await fetch('https://4a03-128-59-176-236.ngrok-free.app/put_offer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

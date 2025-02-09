@@ -12,7 +12,7 @@ export default function SearchScreen() {
 
   const fetchOffers = async () => {
     try {
-      const response = await fetch('https://128d-128-59-176-236.ngrok-free.app/recommendations', {
+      const response = await fetch('https://f4e5-128-59-176-236.ngrok-free.app/recommendations', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
