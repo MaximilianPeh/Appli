@@ -16,29 +16,12 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-
-
 @app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
 def recommendations():
     data = request.json
     user_id = data.get('user_id')
     recommendations = get_recommendations(user_id)
     return jsonify(recommendations)
-
-@app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
-def recommendations():
-    data = request.json
-    user_id = data.get('user_id')
-    recommendations = get_recommendations(user_id)
-    return jsonify(recommendations)
-
-
-@app.route('/autotag', methods=['POST'])
-def autotag():
-    data = request.json
-    image_path = data.get('image_path')
-    autotag = get_autotag(image_path)
-    return jsonify(autotag)
 
 @app.route('/autotag', methods=['POST'])
 def autotag():
@@ -57,14 +40,18 @@ def health():
 def greet(name):
     return jsonify({"status": f"i, {name} am good"})
 
-# TEST POST
-@app.route('/test_post', methods=['POST'])
-def test_post():
+@app.route('/put_offer', methods=['POST'])
+def put_offer():
     data = request.json
-    return jsonify({"status": f"i got your data: {data}"})
+    print(data)
+    doc_ref = db.collection("offers").document()
+    doc_ref.set(data)
+    return jsonify({"status": f"i put your name: {data}"})
 
-
-
+@app.route('/get_all_offers', methods=['GET'])
+def get_offers():
+    docs = db.collection("offers").get()
+    return jsonify([doc.to_dict() for doc in docs])
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
