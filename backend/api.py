@@ -8,8 +8,8 @@ app = Flask(__name__)
 @app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
 def recommendations():
     data = request.json
-    user_id = data.get('user_id')
-    recommendations = get_recommendations(user_id)
+    history = data.get('user_history')
+    recommendations = get_recommendations(history)
     return jsonify(recommendations)
 
 
