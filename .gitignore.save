@@ -1,6 +1,7 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
 # Firebase credentials
+backend/appli-b7af4-firebase-adminsdk-fbsvc-56b516817b.json
 
 # dependencies
 node_modules/
@@ -36,3 +37,5 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+^X
+

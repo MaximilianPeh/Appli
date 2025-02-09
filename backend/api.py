@@ -35,8 +35,6 @@ def recommendations():
     print(recommendations)
     return (recommendations)
 
-recommendations()
-
 # AUTOTAG
 @app.route('/autotag', methods=['POST'])
 def autotag():
