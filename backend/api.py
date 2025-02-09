@@ -24,11 +24,15 @@ db = firestore.client()
 
 @app.route('/recommendations', methods=['POST']) # post means send data to api; get means you get data from firebase
 def recommendations():
-    data = request.json
-    user_id = data.get('user_id')
-    recommendations = get_recommendations(user_id)
+    # Get raw data from both collections
+    user_history = [doc.to_dict() for doc in db.collection("borrowingHistory").get()]
+    all_offers = [doc.to_dict() for doc in db.collection("offers").get()]
+    combined_data = user_history + all_offers
+
+    recommendations = get_recommendations(combined_data)
     return jsonify(recommendations)
 
+# AUTOTAG
 @app.route('/autotag', methods=['POST'])
 def autotag():
     data = request.json
@@ -46,6 +50,7 @@ def health():
 def greet(name):
     return jsonify({"status": f"i, {name} am good"})
 
+# PUT AN ITEM INTO DATABASE
 @app.route('/put_offer', methods=['POST'])
 def put_offer():
     data = request.json
@@ -54,11 +59,13 @@ def put_offer():
     doc_ref.set(data)
     return jsonify({"status": f"i put your name: {data}"})
 
+# GET ALL OFFERS (LIST OF ALL ITEMS AVAILABLE TO BORROW)
 @app.route('/get_all_offers', methods=['GET'])
-def get_offers():
+def get_all_offers():
     docs = db.collection("offers").get()
     return jsonify([doc.to_dict() for doc in docs])
 
+# PUT AN ITEM INTO BORROWING HISTORY
 @app.route('/put_borrow', methods=['POST'])
 def put_borrow():
     data = request.json
@@ -67,6 +74,7 @@ def put_borrow():
     doc_ref.set(data)
     return jsonify({"status": f"i put your name: {data}"})
 
+# GET BORROWING HISTORY
 @app.route('/get_all_borrows', methods=['GET'])
 def get_borrows():
     docs = db.collection("borrowingHistory").get()
