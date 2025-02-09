@@ -55,7 +55,7 @@ export default function HomeScreen() {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor="#ffffff" // This makes the loading spinner white
+            tintColor="#ffffff" // Makes the loading spinner white
           />
         }
       >

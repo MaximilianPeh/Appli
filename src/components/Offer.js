@@ -67,27 +67,30 @@ const Offer = ({ itemName, rating, sellerName, points, imageURL }) => {
         style={[styles.innerShadow, { height: randomHeight * 0.25 }]} // 25% of container height
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.itemName}>{itemName}</Text>
-        <Text style={styles.points}>{points} points</Text>
-        <View style={styles.ratingContainer}>
-          <Ionicons name="star" size={12} color="#FFD700" />
-          <Text style={styles.rating}>{rating}</Text>
+        <View style={styles.contentContainer}>
+          <Text style={styles.itemName}>{itemName}</Text>
+          <Text style={styles.points}>{points} points</Text>
+          <View style={styles.ratingContainer}>
+            <Ionicons name="star" size={12} color="#FFD700" />
+            <Text style={styles.rating}>{rating}</Text>
+          </View>
+          <Text style={styles.sellerName}>by {sellerName}</Text>
         </View>
-        <Text style={styles.sellerName}>by {sellerName}</Text>
-      </View>
-      <Pressable 
-        onPressIn={onPressIn}
-        onPressOut={onPressOut}
-      >
-        <Animated.View 
-          style={[
-            styles.borrowButton, 
-            { transform: [{ scale: scaleAnim }] }
-          ]}
+        <Pressable 
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
+          style={borrowButtonStyles.buttonContainer}
         >
-          <Text style={styles.borrowButtonText}>Borrow</Text>
-        </Animated.View>
-      </Pressable>
+          <Animated.View 
+            style={[
+              borrowButtonStyles.button, 
+              { transform: [{ scale: scaleAnim }] }
+            ]}
+          >
+            <Text style={borrowButtonStyles.text}>Borrow</Text>
+          </Animated.View>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -103,8 +106,15 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    position: 'relative',
+    paddingBottom: 0,
+  },
+  contentContainer: {
     gap: theme.spacing.xs,
-    alignItems: 'flex-start', // Align content to left
+    alignItems: 'flex-start',
   },
   itemName: {
     fontSize: 12,
@@ -142,7 +152,8 @@ const styles = StyleSheet.create({
     textShadowOffset: {
       width: 1,
       height: 1
-    }
+    },
+    paddingBottom: 10
   },
   innerShadow: {
     position: 'absolute',
@@ -169,15 +180,24 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     borderRadius: theme.borderRadius,
   },
-  borrowButton: {
-    backgroundColor: theme.colors.primary,
+});
+
+const borrowButtonStyles = StyleSheet.create({
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    paddingBottom: 8,
+    paddingRight: 8,
+  },
+  button: {
+    backgroundColor: theme.colors.primary, 
     paddingHorizontal: theme.spacing.md,
     paddingVertical: theme.spacing.sm,
     borderRadius: theme.borderRadius,
-    marginTop: theme.spacing.sm,
     alignItems: 'center',
   },
-  borrowButtonText: {
+  text: {
     color: theme.colors.text.primary,
     fontWeight: 'bold',
     fontSize: theme.typography.size.sm,
