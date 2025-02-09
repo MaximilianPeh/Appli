@@ -70,6 +70,7 @@ export default function HomeScreen() {
                   rating={(3.0 + Math.floor(Math.random() * 21) / 10).toFixed(1)}
                   points={offer.points}
                   sellerName={"user1"}
+                  imageURL={offer.link}
                 />
               ))}
           </View>
@@ -84,6 +85,7 @@ export default function HomeScreen() {
                   rating={(3.0 + Math.floor(Math.random() * 21) / 10).toFixed(1)}
                   points={offer.points}
                   sellerName={"user1"}
+                  imageURL={offer.link}
                 />
               ))}
           </View>

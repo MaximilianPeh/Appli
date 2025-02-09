@@ -58,6 +58,7 @@ export default function AddOfferScreen() {
         description: description,
         points: Number(points),
         link: link,
+        imageURL: link,
         topics: topics,
         createdAt: new Date(),
       };
@@ -142,10 +143,10 @@ export default function AddOfferScreen() {
               onChangeText={setPoints}
             />
 
-            <Text style={styles.label}>Link</Text>
+            <Text style={styles.label}>Image URL</Text>
             <TextInput
               style={styles.input}
-              placeholder="Add links here"
+              placeholder="Add image URL here"
               placeholderTextColor={theme.colors.text.secondary}
               value={link}
               onChangeText={setLink}
